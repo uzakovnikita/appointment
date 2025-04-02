@@ -41,10 +41,11 @@ jobs:
       - name: check migrations
         run: |
           STATUS=$(npx prisma migrate status)
-          if [[ $STATUS == *"Database schema is up to date"* ]]; then
+          if echo "$STATUS" | grep -q "Database schema is up to date"; then
             echo "Migrations verified successfully"
           else
             echo "Migrations verification failed"
+            echo "Migration status: $STATUS"
             exit 1
           fi
-
+        shell: bash

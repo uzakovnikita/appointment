@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres
+    env_file:
+      - .env
+    environment:
+      - POSTGRES_DB=appointment
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+  shadow:
+    image: postgres
+    env_file:
+      - .env
+    environment:
+      - POSTGRES_DB=shadow
+    volumes:
+      - shadow_data:/var/lib/postgresql/data
+    ports:
+      - "5434:5432"
+
+volumes:
+  db_data:
+  shadow_data:
