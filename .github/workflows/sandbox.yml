@@ -1,0 +1,27 @@
+name: sandbox
+
+on: 
+  workflow_dispatch:
+    inputs:
+      envionment:
+        description: "Environment"
+        required: true
+
+
+jobs:
+  hello:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+  hello2:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "🎉 The job was automatically triggered by a ${{ inputs.envionment }} event."
+  publish:
+    needs: [hello2]
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: publish
+        run: |
+          echo 'publishing'
