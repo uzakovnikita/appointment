@@ -30,3 +30,11 @@ jobs:
       - name: publish
         run: |
           echo 'publishing'
+  staging:
+    needs: [hello2]
+    runs-on: ubuntu-latest
+    environment: stage
+    steps:
+      - name: publish
+        run: |
+          echo 'publishing'
