@@ -7,7 +7,7 @@
 # To get a newer version, you will need to update the SHA.
 # You can also reference a tag or branch, but the action may change without warning.
 
-name: Publish Docker image
+name: Deploy
 
 on:
   release:
@@ -54,3 +54,16 @@ jobs:
           subject-name: index.docker.io/nikitauzakov/appointment
           subject-digest: ${{ steps.push.outputs.digest }}
           push-to-registry: true
+  deploy_on_vps:
+    name: Deploy to VPS
+    uses: D3rHase/ssh-command-action@latest
+    with:
+      host: ${{ secrets.HOST }}
+      port: ${{ secrets.PORT }}
+      user: ${{ secrets.USER }}
+      private_key: ${{ secrets.PRIVATE_KEY }}
+      command: |
+          cd /path/to/your/directory
+          git pull origin main
+          npm install
+          npm run build
