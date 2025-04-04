@@ -14,8 +14,8 @@ on:
     types: [published]
 
 jobs:
-  push_to_registry:
-    name: Push Docker image to Docker Hub
+  build_and_push_image:
+    name: Build and push Docker image to Docker Hub
     runs-on: ubuntu-latest
     permissions:
       packages: write
@@ -55,6 +55,7 @@ jobs:
           subject-digest: ${{ steps.push.outputs.digest }}
           push-to-registry: true
   deploy_on_vps:
+    needs: [build_and_push_image]
     name: Deploy to VPS
     uses: D3rHase/ssh-command-action@latest
     with:
