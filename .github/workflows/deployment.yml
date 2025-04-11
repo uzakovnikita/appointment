@@ -58,13 +58,11 @@ jobs:
     needs: [build_and_push_image]
     name: Deploy to VPS
     uses: D3rHase/ssh-command-action@latest
+    env:
+      RELEASE_VERSION: ${{ github.ref_name }}
     with:
       host: ${{ secrets.HOST }}
-      port: ${{ secrets.PORT }}
       user: ${{ secrets.USER }}
       private_key: ${{ secrets.PRIVATE_KEY }}
       command: |
-          cd /path/to/your/directory
-          git pull origin main
-          npm install
-          npm run build
+          kubectl set image deployment/appointment-app appointment=nikitauzakov/appointment:$RELEASE_VERSION
