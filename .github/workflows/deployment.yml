@@ -12,6 +12,12 @@ name: Deploy
 on:
   release:
     types: [published]
+  workflow_dispatch:
+    inputs:
+      release_version:
+        description: "Версия для деплоя"
+        required: false
+        default: "latest"
 
 jobs:
   build_and_push_image:
@@ -57,14 +63,16 @@ jobs:
   deploy_on_vps:
     needs: [build_and_push_image]
     name: Deploy to VPS
-    uses: D3rHase/ssh-command-action@latest
-    with:
-      host: ${{ secrets.HOST }}
-      port: ${{ secrets.PORT }}
-      user: ${{ secrets.USER }}
-      private_key: ${{ secrets.PRIVATE_KEY }}
-      command: |
-          cd /path/to/your/directory
-          git pull origin main
-          npm install
-          npm run build
+    runs-on: ubuntu-latest
+    env:
+      RELEASE_VERSION: ${{ inputs.release_version || github.event.release.tag_name  }}
+
+    steps:
+      - name: Execute SSH command
+        uses: D3rHase/ssh-command-action@latest
+        with:
+          host: ${{ secrets.HOST }}
+          user: ${{ secrets.USER }}
+          private_key: ${{ secrets.PRIVATE_KEY }}
+          command: |
+            kubectl set image deployment/appointment-app appointment=nikitauzakov/appointment:$RELEASE_VERSION
