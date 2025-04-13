@@ -7,7 +7,7 @@
 # To get a newer version, you will need to update the SHA.
 # You can also reference a tag or branch, but the action may change without warning.
 
-name: Deploy
+name: Build and push Docker
 
 on:
   release:
@@ -17,12 +17,14 @@ on:
       release_version:
         description: "Версия для деплоя"
         required: false
+        type: string
         default: "latest"
 
 jobs:
   build_and_push_image:
     name: Build and push Docker image to Docker Hub
     runs-on: ubuntu-latest
+    environment: production
     permissions:
       packages: write
       contents: read
@@ -60,19 +62,8 @@ jobs:
           subject-name: index.docker.io/nikitauzakov/appointment
           subject-digest: ${{ steps.push.outputs.digest }}
           push-to-registry: true
-  deploy_on_vps:
-    needs: [build_and_push_image]
-    name: Deploy to VPS
-    runs-on: ubuntu-latest
-    env:
-      RELEASE_VERSION: ${{ inputs.release_version || github.event.release.tag_name  }}
-
-    steps:
-      - name: Execute SSH command
-        uses: D3rHase/ssh-command-action@latest
-        with:
-          host: ${{ secrets.HOST }}
-          user: ${{ secrets.USER }}
-          private_key: ${{ secrets.PRIVATE_KEY }}
-          command: |
-            kubectl set image deployment/appointment-app appointment=nikitauzakov/appointment:$RELEASE_VERSION
+  call_deploy:
+    uses: ./.github/workflows/deploy.yml
+    with:
+      release_version: ${{ github.event.release.tag_name }}
+      secrets: inherit
