@@ -1,0 +1,32 @@
+name: Deploy
+on:
+  workflow_call:
+    inputs:
+      release_version:
+        required: true
+        type: string
+    secrets:
+      HOST:
+        required: true
+      USER:
+        required: true
+      PRIVATE_KEY:
+        required: true
+
+jobs:
+  deploy_on_vps:
+    name: Deploy to VPS
+    runs-on: ubuntu-latest
+    environment: production
+    env:
+      RELEASE_VERSION: ${{ inputs.release_version }}
+
+    steps:
+      - name: Execute SSH command
+        uses: D3rHase/ssh-command-action@latest
+        with:
+          host: ${{ secrets.HOST }}
+          user: ${{ secrets.USER }}
+          private_key: ${{ secrets.PRIVATE_KEY }}
+          command: |
+            k3s kubectl set image deployment/appointment-app appointment=nikitauzakov/appointment:$RELEASE_VERSION

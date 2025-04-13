@@ -1,14 +1,26 @@
 name: sandbox
 
-on: 
+on:
   workflow_dispatch:
     inputs:
       envionment:
         description: "Environment"
         required: true
 
-
 jobs:
+  ssh_hello:
+    name: ssh_hello
+    runs-on: ubuntu-latest
+    steps:
+      - name: Execute SSH command
+        uses: D3rHase/ssh-command-action@latest
+        with:
+          host: ${{ secrets.HOST }}
+          user: ${{ secrets.USER }}
+          private_key: ${{ secrets.PRIVATE_KEY }}
+          command: |
+            echo "hello from server: ${ifconfig} with user ${whoami}"
+
   hello:
     runs-on: ubuntu-latest
     steps:
@@ -30,7 +42,7 @@ jobs:
       - name: publish
         run: |
           echo 'publishing'
-  staging:  
+  staging:
     needs: [hello2]
     runs-on: ubuntu-latest
     environment: stage
