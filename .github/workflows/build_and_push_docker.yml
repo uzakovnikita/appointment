@@ -12,13 +12,6 @@ name: Build and push Docker
 on:
   release:
     types: [published]
-  workflow_dispatch:
-    inputs:
-      release_version:
-        description: "Версия для деплоя"
-        required: false
-        type: string
-        default: "latest"
 
 jobs:
   build_and_push_image:
@@ -70,4 +63,5 @@ jobs:
     secrets:
       host: ${{ secrets.HOST }}
       user: ${{ secrets.USER }}
+      port: ${{ secrets.PORT }}
       private_key: ${{ secrets.PRIVATE_KEY }}
