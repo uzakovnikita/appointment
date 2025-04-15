@@ -1,0 +1,44 @@
+name: Production Database Migrations
+
+on:
+  workflow_dispatch:
+
+jobs:
+  run-migrations:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Setup SSH tunnel
+      uses: webfactory/ssh-agent@v0.7.0
+      with:
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+    - name: Create SSH tunnel
+      run: |
+        ssh -o StrictHostKeyChecking=no \
+            -N -L 5432:localhost:5432 \
+            ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} &
+        sleep 3
+
+    - name: Run Prisma migrations
+      env:
+        DATABASE_URL: ${{ secrets.PROD_DATABASE_URL }}
+      run: |
+        npx prisma migrate deploy
+        npx prisma generate
+
+    - name: Verify migrations
+      run: |
+        npx prisma migrate status

@@ -6,7 +6,13 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "db:push": "prisma db push",
+    "migrate:up": "prisma migrate dev",
+    "migrate:down": "prisma migrate diff --from-schema-datamodel prisma/schema.prisma --to-migrations prisma/migrations --shadow-database-url postgresql://admin:password@localhost:5434/shadow?schema=public --script > down.sql",
+    "migrate:dev": "npm run migrate:down && npm run migrate:up",
+    "migrate:prod": "prisma migrate deploy",
+    "db:reset": "npx prisma migrate reset"
   },
   "dependencies": {
     "@prisma/client": "^6.5.0",
