@@ -13,7 +13,45 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Client {
+model Admin {
   id    Int    @id @default(autoincrement())
-  phone Int
+  email String
+}
+
+model Client {
+  id      Int       @id @default(autoincrement())
+  phone   String
+  Booking Booking[]
+}
+
+model Manager {
+  id       Int        @id @default(autoincrement())
+  name     String
+  Booking  Booking[]
+  Schedule Schedule[]
+}
+
+model Booking {
+  id        Int      @id @default(autoincrement())
+  time      DateTime
+  manager   Manager  @relation(fields: [managerid], references: [id])
+  managerid Int
+  client    Client   @relation(fields: [clientId], references: [id])
+  clientId  Int
+  bikes     Bike[]
+  comment   String?
+}
+
+model Bike {
+  id      Int       @id @default(autoincrement())
+  name    String
+  Booking Booking[]
+  enabled Boolean
+}
+
+model Schedule {
+  id        Int      @id @default(autoincrement())
+  date      DateTime
+  manager   Manager  @relation(fields: [managerid], references: [id])
+  managerid Int
 }
