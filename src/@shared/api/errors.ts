@@ -1,6 +1,6 @@
 class BaseApiError extends Error {
-  public status: number;
-  constructor({ message, status }: { message: string; status: number }) {
+  public status?: number;
+  constructor({ message, status }: { message?: string; status?: number }) {
     super(message);
     this.name = "ApiError";
     this.status = status;
@@ -39,5 +39,12 @@ export class TooManyRequestsError extends BaseApiError {
   constructor() {
     super({ message: "TooManyRequestsError", status: 429 });
     this.name = "TooManyRequestsError";
+  }
+}
+
+export class TimeoutError extends BaseApiError {
+  constructor() {
+    super({ message: "TimeoutError" });
+    this.name = "TimeoutError";
   }
 }
