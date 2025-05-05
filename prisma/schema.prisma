@@ -21,6 +21,7 @@ model Admin {
 model Client {
   id      Int       @id @default(autoincrement())
   phone   String
+  name    String    @default("")
   Booking Booking[]
 }
 

@@ -1,5 +1,5 @@
-import { getEnabledBikes } from "@/@entities";
-import { BikeBucket } from "@/@widgets/BikeBucket";
+import { getEnabledBikes } from "@entities";
+import { BikeBucket } from "@widgets";
 
 export default async function BikeBooking({
   searchParams,

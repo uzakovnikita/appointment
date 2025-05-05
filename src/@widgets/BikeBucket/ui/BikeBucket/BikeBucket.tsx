@@ -2,10 +2,9 @@
 
 import React, { useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import { Bike } from "@/@entities/bike";
+import { Bike } from "../../../../@entities/bike/model";
 import { Props } from "./types";
 import { ScheduleByBike } from "../ScheduleByBike";
-import { Comments } from "../Comments";
 
 export const BikeBucket: React.FC<Props> = ({
   enabledBikes,
@@ -23,7 +22,7 @@ export const BikeBucket: React.FC<Props> = ({
     setBucket((prev) => prev.filter((bikeId) => bikeId !== id));
   };
 
-  const confirmNext = () => {
+  const applySelectedBikes = () => {
     router.push(`${pathname}?bikeIds=${bucket.join(",")}`);
   };
 
@@ -50,13 +49,11 @@ export const BikeBucket: React.FC<Props> = ({
           );
         })}
       </ul>
-      <button onClick={confirmNext}>Применить выбранное</button>
+      <button onClick={applySelectedBikes}>Применить выбранное</button>
 
       {filteredBikeIds.length > 0 && (
         <ScheduleByBike filteredBikeIds={filteredBikeIds} />
       )}
-
-      <Comments />
     </div>
   );
 };

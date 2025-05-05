@@ -1,22 +1,11 @@
 import { BaseService } from "@/@shared/api";
+import { Booking } from "./model";
 
 class BookingService extends BaseService {
-  addBook({
-    clientName,
-    phone,
-    comment,
-  }: {
-    clientName: string;
-    phone: string;
-    comment: string;
-  }) {
+  createBooking(data: Booking) {
     return this.apiClient("booking/create", {
       method: "post",
-      json: {
-        clientName,
-        phone,
-        comment,
-      },
+      json: data,
     });
   }
 }
