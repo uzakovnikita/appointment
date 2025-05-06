@@ -3,14 +3,9 @@ import React from "react";
 
 export const MASK = "+7 (___) ___ - __ - __";
 
-export const MaskedInput = ({
-  isChildrenFirst,
-  children,
-  ...rest
-}: React.HTMLProps<HTMLInputElement> & {
-  children?: React.ReactNode;
-  isChildrenFirst?: boolean;
-}) => {
+export const MaskedInput = (
+  props: Omit<React.HTMLProps<HTMLInputElement>, "type">
+) => {
   const phoneInputRef = useMask({
     mask: MASK,
     replacement: {
@@ -19,11 +14,5 @@ export const MaskedInput = ({
     showMask: true,
   });
 
-  return (
-    <>
-      {isChildrenFirst && children}
-      <input {...rest} ref={phoneInputRef} type="phone" />
-      {!isChildrenFirst && children}
-    </>
-  );
+  return <input {...props} ref={phoneInputRef} type="phone" />;
 };

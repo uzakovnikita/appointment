@@ -2,7 +2,7 @@
 "use client";
 
 import React from "react";
-
+import { RHFClientForm } from "../RHFClientForm";
 import { FieldInfo, MaskedInput, MASK, useAppForm, NameField } from "@shared";
 
 export const ClientForm = () => {
@@ -15,6 +15,10 @@ export const ClientForm = () => {
       console.log(value);
     },
   });
+
+  if (true) {
+    return <RHFClientForm />
+  }
 
   return (
     <form
