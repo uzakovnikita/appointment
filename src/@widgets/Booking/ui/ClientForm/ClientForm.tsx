@@ -2,28 +2,16 @@
 "use client";
 
 import React from "react";
-import { useForm } from "@tanstack/react-form";
-import { z } from "zod";
 
-import { FieldInfo, MaskedInput, MASK, ZodFieldInfo } from "@shared";
-
-const clientNameSchema = z
-  .string({
-    required_error: "Обязательное поле",
-    invalid_type_error: "Не верный формат имени",
-  })
-  .min(3, "Имя должно быть не меньше 3 символов")
-  .max(10, "Имя должно быть не больше 10 символов");
+import { FieldInfo, MaskedInput, MASK, useAppForm, NameField } from "@shared";
 
 export const ClientForm = () => {
-  const formLib = useForm({
+  const formLib = useAppForm({
     defaultValues: {
-      clientName: "",
-      clientPhone: MASK,
+      name: "",
+      phone: MASK,
     },
     onSubmit: async ({ value }) => {
-      // Do something with form data
-      console.log('submit')
       console.log(value);
     },
   });
@@ -38,7 +26,7 @@ export const ClientForm = () => {
     >
       <div>
         <formLib.Field
-          name="clientPhone"
+          name="phone"
           validators={{
             onBlur: ({ value }) => {
               const checkFormat = /^\+7 \(\d{3}\) \d{3} - \d{2} - \d{2}$/.test(
@@ -75,33 +63,8 @@ export const ClientForm = () => {
           )}
         </formLib.Field>
       </div>
-
-      <div>
-        <formLib.Field
-          name="clientName"
-          validators={{
-            onBlur: clientNameSchema,
-          }}
-        >
-          {(field) => (
-            <>
-              <label htmlFor={field.name}>
-                <input
-                  onChange={(e) =>
-                    field.handleChange((e.target as HTMLInputElement).value)
-                  }
-                  value={field.state.value}
-                  onBlur={field.handleBlur}
-                  id={field.name}
-                  name={field.name}
-                />
-                Ваше имя
-              </label>
-              <ZodFieldInfo field={field} />
-            </>
-          )}
-        </formLib.Field>
-      </div>
+      {/* @ts-expect-error https://github.com/TanStack/form/discussions/1244#discussioncomment-13048634 */}
+      <NameField form={formLib} />
       <formLib.Subscribe
         selector={(state) => [state.canSubmit, state.isSubmitting]}
         children={([canSubmit, isSubmitting]) => (
