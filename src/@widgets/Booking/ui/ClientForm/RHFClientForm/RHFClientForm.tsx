@@ -1,3 +1,5 @@
+"use client";
+
 import { useForm, FormProvider } from "react-hook-form";
 import { RHFPhoneField } from "@shared";
 import { useEffect } from "react";
@@ -7,6 +9,7 @@ export const RHFClientForm = () => {
   const methods = useForm({
     mode: "onBlur",
   });
+
   const { reset, formState } = methods;
 
   const onSubmit = (data) => console.log(data);

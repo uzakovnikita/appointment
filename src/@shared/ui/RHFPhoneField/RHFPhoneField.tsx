@@ -1,10 +1,12 @@
+"use client";
+
 import { useFormContext, Controller } from "react-hook-form";
 import { MaskedInput, MASK } from "../MaskedPhoneInput";
-import { RHFError } from "../RHFError";
+import { Field } from "../FIeld";
 
 export const RHFPhoneField = ({ name }: { name: string }) => {
   const { control, formState } = useFormContext();
-
+  const errorMsg = formState.errors[name]?.message as string;
   return (
     <>
       <Controller
@@ -30,22 +32,9 @@ export const RHFPhoneField = ({ name }: { name: string }) => {
         }}
         render={({ field: { onChange, value, onBlur } }) => {
           return (
-            <div>
-              <label>
-                {name}
-                <MaskedInput
-                  onChange={onChange}
-                  onBlur={onBlur}
-                  value={value}
-                  style={{
-                    borderColor: formState.errors[name]?.message
-                      ? "red"
-                      : "black",
-                  }}
-                />
-              </label>
-              <RHFError name={name} />
-            </div>
+            <Field name={name} error={errorMsg}>
+              <MaskedInput onChange={onChange} onBlur={onBlur} value={value} />
+            </Field>
           );
         }}
       />

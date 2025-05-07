@@ -1,4 +1,4 @@
-import { useFreeTimesByBike } from "../../../../@entities/bike/api/queries";
+import { useFreeTimesByBike } from "@entities";
 import { normalizeDate } from "@shared";
 import React from "react";
 

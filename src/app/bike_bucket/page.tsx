@@ -10,7 +10,7 @@ export default async function BikeBooking({
   const transformedFilteredBikeIds = filteredBikes ? String(filteredBikes)?.split(",").map(val => Number(val)) : [];
 
   const enabledBikes = await getEnabledBikes()
-
+  await new Promise((res) => setTimeout(() => res(), 2000));
 
   return <BikeBucket enabledBikes={enabledBikes} filteredBikeIds={transformedFilteredBikeIds} />;
 }
