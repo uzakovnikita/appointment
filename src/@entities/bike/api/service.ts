@@ -1,4 +1,4 @@
-import { BaseService } from "@/@shared/api";
+import { BaseService } from "@shared";
 
 class BikeService extends BaseService {
   getFreeTimesByBikeFn(bikesIds: number[]) {
@@ -9,7 +9,5 @@ class BikeService extends BaseService {
       });
   }
 }
-
-export const MY_NAME = 'Nikita'
 
 export const bikeService = new BikeService();
