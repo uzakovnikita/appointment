@@ -2,6 +2,7 @@
 
 import { useMask } from "@react-input/mask";
 import React from "react";
+import { Input } from "../Input";
 
 export const MASK = "+7 (___) ___ - __ - __";
 
@@ -16,5 +17,5 @@ export const MaskedInput = (
     showMask: true,
   });
 
-  return <input {...props} ref={phoneInputRef} type="phone" />;
+  return <Input {...props} ref={phoneInputRef} type="phone" />;
 };

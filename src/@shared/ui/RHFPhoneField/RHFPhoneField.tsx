@@ -16,7 +16,7 @@ export const RHFPhoneField = ({ name }: { name: string }) => {
         rules={{
           validate: (value) => {
             const checkFormat = /^\+7 \(\d{3}\) \d{3} - \d{2} - \d{2}$/.test(
-              value
+              value,
             );
 
             if (value === MASK) {
@@ -33,7 +33,12 @@ export const RHFPhoneField = ({ name }: { name: string }) => {
         render={({ field: { onChange, value, onBlur } }) => {
           return (
             <Field name={name} error={errorMsg}>
-              <MaskedInput onChange={onChange} onBlur={onBlur} value={value} />
+              <MaskedInput
+                onChange={onChange}
+                onBlur={onBlur}
+                value={value}
+                name={name}
+              />
             </Field>
           );
         }}

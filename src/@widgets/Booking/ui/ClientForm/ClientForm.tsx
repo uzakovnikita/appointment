@@ -13,7 +13,11 @@ const formtype = FormTypes.Rhf;
 
 export const ClientForm = () => {
   if (formtype === FormTypes.Rhf) {
-    return <RHFClientForm />;
+    return (
+      <div className="text-headline-sm text-on-surface">
+        <RHFClientForm />
+      </div>
+    );
   }
 
   return <TanstackClientForm />;

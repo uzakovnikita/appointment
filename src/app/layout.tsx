@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Roboto_Mono, Open_Sans } from "next/font/google";
 import { QueryProvider } from "@/@root";
-import "@/@root/styles/global.css";
+import "@/@root/styles/theme.css";
 
 const roboto_mono = Roboto_Mono({
   subsets: ["latin"],
@@ -29,7 +29,7 @@ export default function RootLayout({
       lang="en"
       className={`${roboto_mono.className} ${open_sans.className} antialiased`}
     >
-      <body>
+      <body className="text-on-background bg-background p-5">
         <QueryProvider>{children}</QueryProvider>
       </body>
     </html>

@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { Field } from "../FIeld";
+import { Input } from "../Input";
 import { useFormContext } from "react-hook-form";
 
 export const nameSchema = z
@@ -9,7 +10,7 @@ export const nameSchema = z
   })
   .regex(
     /^[a-zA-Zа-яА-ЯЁё]+$/,
-    "Допустимы только буквы без пробелов, цифр и спецсимволов"
+    "Допустимы только буквы без пробелов, цифр и спецсимволов",
   )
   .min(1, "Обязательное поле")
   .min(3, "Имя должно состоять из не меньше чем 3 символов")
@@ -21,7 +22,7 @@ export const RHFNameField = ({ name }: { name: string }) => {
 
   return (
     <Field name={name} error={errorMsg}>
-      <input
+      <Input
         {...register(name, {
           validate: (value) => {
             const check = nameSchema.safeParse(value);

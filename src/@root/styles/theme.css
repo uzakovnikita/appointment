@@ -1,6 +1,8 @@
 @import "tailwindcss";
 
+
 @theme {
+  /* classname 'bg-{colorname}' or 'text-{colorname}' and so on */
   --color-primary: rgb(193 193 255);
   --color-surface-tint: rgb(193 193 255);
   --color-on-primary: rgb(42 42 96);
@@ -50,16 +52,20 @@
   --color-surface-container: rgb(31 31 37);
   --color-surface-container-high: rgb(42 41 47);
   --color-surface-container-highest: rgb(53 52 58);
+  /* classname 'font-{name}' */
   --font-primary: var(--font-roboto-mono);
   --font-branding: var(--font-open-sans);
-  --font-weight-normal: 300;
+  /* classname 'font-{weight}' */
+  --font-weight-normal: 400;
   --font-weight-medium: 500;
-  --font-weight-bold: 700;  
-  --fonst-size-s: 14px;
-  --font-size-m: 16px;
-  --font-size-l: 20px;
-  --font-size-xl: 24px;
-  --shape-round-s: 4px;
-  --shape-round-m: 6px;
-  --shape-round-l: 10px;
+  --font-weight-bold: 700;
+  /* classname 'text-{size}' */
+  --text-s: 14px;
+  --text-m: 16px;
+  --text-l: 20px;
+  --text-xl: 24px;
+  /* classname 'rounded-{size}' */
+  --radius-s: 4px;
+  --radius-m: 6px;
+  --radius-l: 10px;
 }
