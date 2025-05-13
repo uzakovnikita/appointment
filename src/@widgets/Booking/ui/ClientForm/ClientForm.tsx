@@ -1,9 +1,10 @@
 'use client'
 
 import React from 'react'
-import { RHFClientForm } from '@shared'
+import { ClientForm as Form } from '@shared'
 
 export const ClientForm = () => {
   const handleSubmit = (data: any) => {}
-  return <RHFClientForm onSubmit={handleSubmit} title="Укажите ваши данные" />
+
+  return <Form onSubmit={handleSubmit} title="Укажите ваши данные" />
 }

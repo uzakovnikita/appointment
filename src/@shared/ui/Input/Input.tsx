@@ -12,7 +12,7 @@ export const Input = ({
         'w-full px-3 py-2',
         'bg-surface-container-highest',
         'text-on-surface',
-        'border-outline border-2',
+        'border-outline border',
         'rounded-md',
         'text-body-md',
         'placeholder:text-on-surface-variant/50',

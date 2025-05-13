@@ -23,10 +23,12 @@ export const Field = ({
 
       {children}
 
-      {error && (
+      {error ? (
         <div className="text-label-md text-error flex items-center gap-1">
           {error}
         </div>
+      ) : (
+        <div className="h-6" />
       )}
     </div>
   )
