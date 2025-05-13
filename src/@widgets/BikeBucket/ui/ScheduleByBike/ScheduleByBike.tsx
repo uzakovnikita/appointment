@@ -1,6 +1,8 @@
+'use client'
+
+import React from 'react'
 import { useFreeTimesByBike } from '@entities'
 import { normalizeDate } from '@shared'
-import React from 'react'
 
 export const ScheduleByBike: React.FC<{ filteredBikeIds: number[] }> = ({
   filteredBikeIds,

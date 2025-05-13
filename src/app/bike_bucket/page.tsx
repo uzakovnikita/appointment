@@ -7,6 +7,7 @@ export default async function BikeBooking({
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }) {
   const { bikeIds: filteredBikes } = await searchParams
+
   const transformedFilteredBikeIds = filteredBikes
     ? String(filteredBikes)
         ?.split(',')
@@ -14,7 +15,8 @@ export default async function BikeBooking({
     : []
 
   const enabledBikes = await getEnabledBikes()
-  await new Promise((res) => setTimeout(() => res(), 2000))
+
+  await new Promise((res) => setTimeout(() => res('lol'), 2000))
 
   return (
     <BikeBucket

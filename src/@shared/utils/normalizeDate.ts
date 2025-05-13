@@ -8,7 +8,7 @@ const normalizeDateNumber = (number: number) => {
 export const normalizeDate = (date: Date) => {
   return {
     month: normalizeDateNumber(date.getMonth()),
-    day: normalizeDateNumber(date.getMonth()),
+    day: normalizeDateNumber(date.getDate()),
     year: normalizeDateNumber(date.getFullYear()),
     hours: normalizeDateNumber(date.getHours()),
     minutes: normalizeDateNumber(date.getMinutes()),

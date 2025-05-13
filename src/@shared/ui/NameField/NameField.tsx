@@ -1,3 +1,5 @@
+'use client'
+
 import { z } from 'zod'
 import { Field } from '../FIeld'
 import { Input } from '../Input'
