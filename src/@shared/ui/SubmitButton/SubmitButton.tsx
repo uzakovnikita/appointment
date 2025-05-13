@@ -18,6 +18,8 @@ export const SubmitButton = ({
         'hover:before:opacity-8',
         'active:before:opacity-12',
         'disabled:opacity-38',
+        'disabled:hover:before:opacity-0',
+        'disabled:active:before:opacity-0',
 
         "before:content-['']",
         'before:absolute',
@@ -32,6 +34,7 @@ export const SubmitButton = ({
 
         'shadow-md',
         'active:shadow-sm',
+        'cursor-pointer',
       )}
       type="submit"
     >
