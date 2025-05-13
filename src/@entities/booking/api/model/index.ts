@@ -1,1 +1,1 @@
-export { type Booking } from "./booking";
+export { type Booking } from './booking'

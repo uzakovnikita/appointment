@@ -1,2 +1,2 @@
-export * from "./normalizeDate";
+export * from './normalizeDate'
 export * from './mergeClasses'

@@ -1,4 +1,4 @@
-import { BaseService } from "@/@shared/api";
+import { BaseService } from '@/@shared/api'
 
 class ClientService extends BaseService {
   someMethod() {
@@ -6,4 +6,4 @@ class ClientService extends BaseService {
   }
 }
 
-export const clientService = new ClientService();
+export const clientService = new ClientService()

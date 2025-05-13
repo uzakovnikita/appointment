@@ -1,28 +1,28 @@
-import type { Metadata } from "next";
-import { Roboto_Mono, Open_Sans } from "next/font/google";
-import { QueryProvider } from "@/@root";
-import "@/@root/styles/theme.css";
+import type { Metadata } from 'next'
+import { Roboto_Mono, Open_Sans } from 'next/font/google'
+import { QueryProvider } from '@/@root'
+import '@/@root/styles/theme.css'
 
 const roboto_mono = Roboto_Mono({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-roboto-mono",
-});
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-roboto-mono',
+})
 
 const open_sans = Open_Sans({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-roboto-mono",
-});
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-roboto-mono',
+})
 
 export const metadata: Metadata = {
-  title: "Enduro 18",
-};
+  title: 'Enduro 18',
+}
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) {
   return (
     <html
@@ -33,5 +33,5 @@ export default function RootLayout({
         <QueryProvider>{children}</QueryProvider>
       </body>
     </html>
-  );
+  )
 }

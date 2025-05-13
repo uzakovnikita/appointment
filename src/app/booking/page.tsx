@@ -1,5 +1,5 @@
-import { Booking } from "@widgets";
+import { Booking } from '@widgets'
 
 export default async function Page() {
-  return <Booking dates={(new Date(), new Date())} />;
+  return <Booking dates={(new Date(), new Date())} />
 }

@@ -1,1 +1,1 @@
-export * from "./MaskedPhoneInput";
+export * from './MaskedPhoneInput'

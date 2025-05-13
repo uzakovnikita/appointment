@@ -1,1 +1,1 @@
-export * from "./getEnabledBikes";
+export * from './getEnabledBikes'

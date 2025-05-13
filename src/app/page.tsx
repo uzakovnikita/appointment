@@ -1,9 +1,8 @@
-import Link from "next/link";
-import styles from "./page.module.css";
+import Link from 'next/link'
 
 export default async function Home() {
   return (
-    <div className={styles.page}>
+    <div className="">
       <nav>
         <ul>
           <li>
@@ -15,5 +14,5 @@ export default async function Home() {
         </ul>
       </nav>
     </div>
-  );
+  )
 }

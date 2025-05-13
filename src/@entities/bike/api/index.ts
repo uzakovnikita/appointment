@@ -1,2 +1,2 @@
-export * from "./server_queries";
-export * from "./queries";
+export * from './server_queries'
+export * from './queries'

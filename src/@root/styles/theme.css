@@ -1,6 +1,5 @@
 @import "tailwindcss";
 
-
 @theme {
   /* classname 'bg-{colorname}' or 'text-{colorname}' and so on */
   --color-primary: rgb(193 193 255);

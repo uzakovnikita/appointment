@@ -1,1 +1,1 @@
-export * from "./useFreeTimesByBike";
+export * from './useFreeTimesByBike'

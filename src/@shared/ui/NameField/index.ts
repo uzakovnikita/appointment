@@ -1,1 +1,1 @@
-export { NameField } from "./NameField";
+export { NameField } from './NameField'

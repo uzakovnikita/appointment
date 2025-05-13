@@ -1,35 +1,40 @@
-import { z } from "zod";
-import { ZodFieldInfo, withForm } from "@shared";
+import { z } from 'zod'
+import { Field } from '../FIeld'
+import { Input } from '../Input'
+import { useFormContext } from 'react-hook-form'
 
-export const clientNameSchema = z
+export const nameSchema = z
   .string({
-    required_error: "required",
-    invalid_type_error: "not valid format",
+    invalid_type_error: 'Не корректный формат',
+    required_error: 'Обязательное поле',
   })
-  .min(3, "name should have length more than 3")
-  .max(10, "name should have length less than 11");
+  .regex(
+    /^[a-zA-Zа-яА-ЯЁё]+$/,
+    'Допустимы только буквы без пробелов, цифр и спецсимволов',
+  )
+  .min(1, 'Обязательное поле')
+  .min(3, 'Имя должно состоять из не меньше чем 3 символов')
+  .max(10, 'Имя должно состоять из не больше чем 11 символов')
 
-export const NameField = withForm({
-  defaultValues: {
-    name: "",
-  },
-  render: function Render({ form }) {
-    return (
-      <div>
-        <form.AppField
-          name="name"
-          validators={{
-            onBlur: clientNameSchema,
-          }}
-        >
-          {(field) => (
-            <>
-              <field.TextField label="Ваше имя" />
-              <ZodFieldInfo field={field} />
-            </>
-          )}
-        </form.AppField>
-      </div>
-    );
-  },
-});
+export const NameField = ({ name }: { name: string }) => {
+  const { register, formState } = useFormContext()
+  const errorMsg = formState.errors[name]?.message as string
+
+  return (
+    <Field name={name} error={errorMsg}>
+      <Input
+        {...register(name, {
+          validate: (value) => {
+            const check = nameSchema.safeParse(value)
+            if (check.error) {
+              return check.error.errors[0].message
+            } else {
+              return true
+            }
+          },
+        })}
+        name={name}
+      />
+    </Field>
+  )
+}

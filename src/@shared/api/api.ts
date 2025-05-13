@@ -1,4 +1,4 @@
-import ky, { HTTPError, TimeoutError as KyTimeoutError } from "ky";
+import ky, { HTTPError, TimeoutError as KyTimeoutError } from 'ky'
 
 import {
   BadRequestError,
@@ -7,60 +7,59 @@ import {
   TimeoutError,
   TooManyRequestsError,
   UnauthorizedError,
-} from "./errors";
+} from './errors'
 
-const API_PREFIX_URL =
-  process.env.API_PREFIX_URL || "http://localhost:3000/api";
+const API_PREFIX_URL = process.env.API_PREFIX_URL || 'http://localhost:3000/api'
 
 const createApiClient = (apiOptions?: Parameters<typeof ky.create>[0]) => {
   const api = ky.create({
     prefixUrl: API_PREFIX_URL,
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
-  });
+  })
 
-  api.extend(apiOptions ?? {});
+  api.extend(apiOptions ?? {})
 
   return async <T>(
     url: string,
-    options?: Parameters<typeof ky.create>[0]
+    options?: Parameters<typeof ky.create>[0],
   ): Promise<T> => {
     try {
-      return await api(url, { ...options }).json();
+      return await api(url, { ...options }).json()
     } catch (error) {
       if (error instanceof HTTPError) {
-        const { message } = await error.response.json();
+        const { message } = await error.response.json()
         switch (error.response.status) {
           case 400:
-            throw new BadRequestError(message);
+            throw new BadRequestError(message)
           case 401:
-            throw new UnauthorizedError(message);
+            throw new UnauthorizedError(message)
           case 404:
-            throw new NotFoundError(message);
+            throw new NotFoundError(message)
           case 409:
-            throw new ConflictError(message);
+            throw new ConflictError(message)
           case 429:
-            throw new TooManyRequestsError();
+            throw new TooManyRequestsError()
           default:
             throw Error(
-              "Status code: " + error.response.status + " Error: " + message
-            );
+              'Status code: ' + error.response.status + ' Error: ' + message,
+            )
         }
       } else if (error instanceof KyTimeoutError) {
-        throw new TimeoutError();
+        throw new TimeoutError()
       } else {
-        throw error;
+        throw error
       }
     }
-  };
-};
+  }
+}
 
-export const appointmentApiClient = createApiClient();
+export const appointmentApiClient = createApiClient()
 export type ApiClient = <T>(
   url: string,
-  options?: Parameters<typeof ky.create>[0]
-) => Promise<T>;
+  options?: Parameters<typeof ky.create>[0],
+) => Promise<T>
 export class BaseService {
   constructor(protected apiClient: ApiClient = appointmentApiClient) {}
 }

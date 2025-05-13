@@ -1,1 +1,1 @@
-export { BikeBucket } from "./ui";
+export { BikeBucket } from './ui'

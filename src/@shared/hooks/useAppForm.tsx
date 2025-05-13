@@ -1,6 +1,6 @@
-import { createFormHook } from "@tanstack/react-form";
-import { fieldContext, formContext } from "../contexts";
-import { TextField } from "../ui";
+import { createFormHook } from '@tanstack/react-form'
+import { fieldContext, formContext } from '../contexts'
+import { TextField } from '../ui'
 
 export const { useAppForm, withForm } = createFormHook({
   fieldContext,
@@ -9,4 +9,4 @@ export const { useAppForm, withForm } = createFormHook({
     TextField,
   },
   formComponents: {},
-});
+})

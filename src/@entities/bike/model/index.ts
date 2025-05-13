@@ -1,1 +1,1 @@
-export type { Bike } from "@prisma/client";
+export type { Bike } from '@prisma/client'

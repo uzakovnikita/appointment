@@ -1,1 +1,1 @@
-export { BikeBucket } from "./BikeBucket";
+export { BikeBucket } from './BikeBucket'

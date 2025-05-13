@@ -1,1 +1,1 @@
-export { ScheduleByBike } from "./ScheduleByBike";
+export { ScheduleByBike } from './ScheduleByBike'
