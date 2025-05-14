@@ -48,6 +48,7 @@ model Bike {
   name    String
   Booking Booking[]
   enabled Boolean
+  img     String
 }
 
 model Schedule {

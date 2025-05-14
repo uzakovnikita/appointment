@@ -10,7 +10,7 @@ export const Field = ({
   error?: string
 }) => {
   return (
-    <div className={'flex flex-col gap-1 font-normal'}>
+    <div className="flex flex-col gap-1 font-normal">
       <label
         htmlFor={name}
         className={cn(

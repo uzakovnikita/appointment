@@ -27,7 +27,7 @@ export const BikeBucket: React.FC<Props> = ({
   }
 
   return (
-    <div>
+    <div className="bg-surface-container-highest text-on-surface rounded-m">
       <ul>
         {enabledBikes.map((bike, i) => {
           return (

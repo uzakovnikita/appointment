@@ -19,16 +19,7 @@ const eslintConfig = [
       'prettier/prettier': [
         'error',
         {
-          trailingComma: 'all',
-          semi: false,
-          tabWidth: 2,
-          singleQuote: true,
-          printWidth: 80,
-          endOfLine: 'auto',
-          arrowParens: 'always',
           plugins: ['prettier-plugin-tailwindcss'],
-        },
-        {
           usePrettierrc: false,
         },
       ],
