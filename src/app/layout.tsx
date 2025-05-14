@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import { Roboto_Mono, Open_Sans } from 'next/font/google'
 import { QueryProvider } from '@/@root'
 import '@/@root/styles/theme.css'
+import { Header } from '@shared'
+import { Footer } from '@/@shared/ui/Footer'
 
 const roboto_mono = Roboto_Mono({
   subsets: ['latin'],
@@ -29,8 +31,17 @@ export default function RootLayout({
       lang="en"
       className={`${roboto_mono.className} ${open_sans.className} antialiased`}
     >
-      <body className="text-on-background bg-background p-5">
-        <QueryProvider>{children}</QueryProvider>
+      <body className="text-on-background bg-background flex min-h-screen flex-col p-5">
+        <div className="mb-10">
+          <Header />
+        </div>
+        <main className="mb-10 grow-1">
+          <QueryProvider>{children}</QueryProvider>
+        </main>
+
+        <div className="mt-auto">
+          <Footer />
+        </div>
       </body>
     </html>
   )

@@ -1,18 +1,18 @@
-import Link from 'next/link'
+import { NavTabs } from '@shared'
 
-export default async function Home() {
+export default function Home() {
   return (
-    <div className="">
-      <nav>
-        <ul>
-          <li>
-            <Link href="/bike_bucket">Выбрать байк</Link>
-          </li>
-          <li>
-            <Link href="/time_booking">Выбрать время</Link>
-          </li>
-        </ul>
-      </nav>
-    </div>
+    <NavTabs
+      tabs={[
+        {
+          href: '/bike_bucket',
+          text: 'Выбрать байк',
+        },
+        {
+          href: '/time_booking',
+          text: 'Выбрать время',
+        },
+      ]}
+    />
   )
 }

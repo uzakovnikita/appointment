@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @theme {
   /* classname 'bg-{colorname}' or 'text-{colorname}' and so on */
@@ -59,6 +59,7 @@
   --font-weight-medium: 500;
   --font-weight-bold: 700;
   /* classname 'text-{size}' */
+  --text-xs: 12px;
   --text-s: 14px;
   --text-m: 16px;
   --text-l: 20px;
@@ -70,7 +71,7 @@
 }
 
 input:-webkit-autofill,
-input:-webkit-autofill:hover, 
+input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 textarea:-webkit-autofill,
 textarea:-webkit-autofill:hover,
@@ -80,7 +81,8 @@ select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
   border: 1px solid var(--color-outline);
   -webkit-text-fill-color: var(--color-on-surface);
-  -webkit-box-shadow: 0 0 0px 1000px var(--color-surface-container-highest) inset;
+  -webkit-box-shadow: 0 0 0px 1000px var(--color-surface-container-highest)
+    inset;
   caret-color: var(--color-on-surface);
   transition: background-color 5000s ease-in-out 0s;
 }
