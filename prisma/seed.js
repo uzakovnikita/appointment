@@ -21,10 +21,26 @@ async function main() {
   // Create bikes
   await prisma.bike.createMany({
     data: [
-      { name: 'Mountain Bike', enabled: true },
-      { name: 'Road Bike', enabled: true },
-      { name: 'Vintage Bike', enabled: true },
-      { name: 'Broken Bike', enabled: false },
+      {
+        name: 'Kayo T1',
+        enabled: true,
+        img: 'https://stels-piter.ru/upload/dev2fun.imagecompress/webp/resize_cache/iblock/086/wqqguzxds43ezcgk7veeimvbi4h57i1d/400_400_140cd750bba9870f18aada2478b24840a/t1_1.webp',
+      },
+      {
+        name: 'Regulmoto SPORT 003',
+        enabled: true,
+        img: 'https://pitbike-cross.ru/upload/iblock/b75/b75e79d7f9183bf39ca2b9ba9b1141d0.jpg',
+      },
+      {
+        name: 'BSE PH 140',
+        enabled: true,
+        img: 'https://tvoymoto.ru/upload/iblock/1db/bt4i11msnjgfsfsp51xv0ra87k2gzzfh/c23e259a-7d2a-11e6-80c2-386077d5e755_c23e25aa-7d2a-11e6-80c2-386077d5e755.resize1.jpg',
+      },
+      {
+        name: 'BSE Z2',
+        enabled: false,
+        img: 'https://pitbike-cross.ru/upload/iblock/bc2/bc2f8649feb84f870f820653f791c5e9.jpg',
+      },
     ],
   })
 
