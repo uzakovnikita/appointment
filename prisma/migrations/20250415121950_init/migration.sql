@@ -37,6 +37,7 @@ CREATE TABLE "Bike" (
     "id" SERIAL NOT NULL,
     "name" TEXT NOT NULL,
     "img" TEXT NOT NULL,
+    "description" TEXT NOT NULL,
 
     CONSTRAINT "Bike_pkey" PRIMARY KEY ("id")
 );

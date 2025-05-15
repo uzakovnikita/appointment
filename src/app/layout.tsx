@@ -14,7 +14,7 @@ const roboto_mono = Roboto_Mono({
 const open_sans = Open_Sans({
   subsets: ['latin'],
   display: 'swap',
-  variable: '--font-roboto-mono',
+  variable: '--font-open-sans',
 })
 
 export const metadata: Metadata = {
@@ -31,7 +31,7 @@ export default function RootLayout({
       lang="en"
       className={`${roboto_mono.className} ${open_sans.className} antialiased`}
     >
-      <body className="text-on-background bg-background flex min-h-screen flex-col p-5">
+      <body className="text-on-background bg-background flex min-h-screen flex-col p-2">
         <div className="mb-10">
           <Header />
         </div>

@@ -24,20 +24,28 @@ async function main() {
       {
         name: 'Kayo T1',
         enabled: true,
+        description:
+          '250 кубовый небольшой эндуро, подходит для людей с ростом до 170 см',
         img: 'https://stels-piter.ru/upload/dev2fun.imagecompress/webp/resize_cache/iblock/086/wqqguzxds43ezcgk7veeimvbi4h57i1d/400_400_140cd750bba9870f18aada2478b24840a/t1_1.webp',
       },
       {
         name: 'Regulmoto SPORT 003',
         enabled: true,
+        description:
+          '250 кубовый небольшой эндуро, подходит для людей с ростом до 170 см',
         img: 'https://pitbike-cross.ru/upload/iblock/b75/b75e79d7f9183bf39ca2b9ba9b1141d0.jpg',
       },
       {
         name: 'BSE PH 140',
         enabled: true,
+        description:
+          '140 кубовый питбайк, на колесах размерностью 17/14, подходит для детей и подростков от 12 лет',
         img: 'https://tvoymoto.ru/upload/iblock/1db/bt4i11msnjgfsfsp51xv0ra87k2gzzfh/c23e259a-7d2a-11e6-80c2-386077d5e755_c23e25aa-7d2a-11e6-80c2-386077d5e755.resize1.jpg',
       },
       {
         name: 'BSE Z2',
+        description:
+          '250 кубовый полноразмерный эндуро, подходит для людей ростом от 170 до 190 см',
         enabled: false,
         img: 'https://pitbike-cross.ru/upload/iblock/bc2/bc2f8649feb84f870f820653f791c5e9.jpg',
       },

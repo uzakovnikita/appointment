@@ -1,5 +1,7 @@
 import { SVGProps } from 'react'
 
+import { config } from '@shared'
+
 import { Ig } from './icons/Ig'
 import { Tg } from './icons/Tg'
 import { Vk } from './icons/Vk'
@@ -19,19 +21,19 @@ export const SocialLink = ({
   const map = {
     [SocialNames.Vk]: {
       Comp: Vk,
-      href: 'https://vk.com',
+      href: config.vkGroupLink,
     },
     [SocialNames.Tg]: {
       Comp: Tg,
-      href: 'https://t.me',
+      href: config.tgChanelLink,
     },
     [SocialNames.Ig]: {
       Comp: Ig,
-      href: 'https://instagram.com',
+      href: config.igLink,
     },
     [SocialNames.Wa]: {
       Comp: Wa,
-      href: 'https://whatsapp.com',
+      href: config.waChatLink,
     },
   }
   const { Comp, href } = map[type]

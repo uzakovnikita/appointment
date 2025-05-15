@@ -5,6 +5,7 @@ import { usePathname, useRouter } from 'next/navigation'
 import { Bike } from '../../../../@entities/bike/model'
 import { Props } from './types'
 import { ScheduleByBike } from '../ScheduleByBike'
+import { ActionButton, Card } from '@shared'
 
 export const BikeBucket: React.FC<Props> = ({
   enabledBikes,
@@ -27,29 +28,78 @@ export const BikeBucket: React.FC<Props> = ({
   }
 
   return (
-    <div className="bg-surface-container-highest text-on-surface rounded-m">
-      <ul>
+    <div className="bg-surface-bright rounded-sm p-1">
+      <h2 className="text-l mb-4 p-1">Доступные байки:</h2>
+      <ul className="grid auto-rows-[1fr] grid-cols-[repeat(auto-fit,minmax(180px,1fr))]">
         {enabledBikes.map((bike, i) => {
           return (
-            <li key={i} onClick={() => addBike(bike.id)}>
-              {bike.name}
-              <button disabled={bucket.includes(bike.id)}>выбрать</button>
+            <li key={i} className="relative">
+              <Card
+                title={bike.name}
+                description={bike.description}
+                srcImg={bike.img}
+                width={360}
+                height={180}
+                classes={{ root: 'h-full flex-col flex' }}
+              >
+                <div className="mt-auto">
+                  <div className="mt-4 flex flex-col justify-between">
+                    <ActionButton
+                      disabled={bucket.includes(bike.id)}
+                      onClick={() => addBike(bike.id)}
+                      variant="primary"
+                      size="s"
+                      className="flex justify-center"
+                    >
+                      <span className="font-bold">Выбрать</span>
+                    </ActionButton>
+
+                    <ActionButton
+                      disabled={!bucket.includes(bike.id)}
+                      onClick={() => deleteBike(bike.id)}
+                      variant="secondary"
+                      size="s"
+                      className="mt-2 flex justify-center"
+                    >
+                      <span className="font-bold">Удалить</span>
+                    </ActionButton>
+                  </div>
+                </div>
+              </Card>
             </li>
           )
         })}
       </ul>
-      {bucket.length > 0 && <p>Вы выбрали следующие байки:</p>}
+      {bucket.length > 0 && <p className="mt-6 mb-2 p-1">Выбрано:</p>}
       <ul>
         {bucket.map((id) => {
           return (
-            <li key={id}>
+            <li
+              key={id}
+              className="bg-surface-container text-on-surface border-outline-variant flex items-center justify-between rounded-lg border p-4 not-first:mt-2"
+            >
               {enabledBikes.find((bike) => bike.id === id)?.name}
-              <button onClick={() => deleteBike(id)}>Удалить</button>
+              <ActionButton
+                size="s"
+                variant="secondary"
+                onClick={() => deleteBike(id)}
+              >
+                Удалить
+              </ActionButton>
             </li>
           )
         })}
       </ul>
-      <button onClick={applySelectedBikes}>Применить выбранное</button>
+      <data className="mt-2 flex justify-center">
+        <ActionButton
+          variant="primary"
+          size="l"
+          disabled={bucket.length < 1}
+          onClick={applySelectedBikes}
+        >
+          <span className="font-bold">Применить выбранное</span>
+        </ActionButton>
+      </data>
 
       {filteredBikeIds.length > 0 && (
         <ScheduleByBike filteredBikeIds={filteredBikeIds} />

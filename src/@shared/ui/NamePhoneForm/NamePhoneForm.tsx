@@ -3,7 +3,7 @@
 import { useForm, FormProvider } from 'react-hook-form'
 import { PhoneField, SubmitButton, NameField } from '..'
 
-export const ClientForm = ({
+export const NamePhoneForm = ({
   title,
   onSubmit,
 }: {

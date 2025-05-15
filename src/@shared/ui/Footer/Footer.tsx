@@ -5,7 +5,6 @@ export const Footer = () => {
 
   return (
     <footer className="bg-surface-container-high text-on-surface rounded-m flex flex-col justify-center p-4">
-      <h3 className="text-l text-center">Наши контакты</h3>
       <ul className="text-s mt-2 flex justify-center">
         {socials.map((type, idx) => (
           <li key={idx} className="not-first:ml-2">

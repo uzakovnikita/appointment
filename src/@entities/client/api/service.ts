@@ -1,4 +1,4 @@
-import { BaseService } from '@/@shared/api'
+import { BaseService } from '@shared'
 
 class ClientService extends BaseService {
   someMethod() {

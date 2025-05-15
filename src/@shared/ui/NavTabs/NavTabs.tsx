@@ -13,7 +13,7 @@ type Props = {
 
 export const NavTabs: React.FC<Props> = ({ tabs }) => {
   return (
-    <nav className="bg-surface-bright rounded-m flex items-center justify-between p-4">
+    <nav className="bg-surface-bright flex items-center justify-between rounded-md p-4">
       {tabs.map((tab, idx) => {
         return (
           <Link
@@ -45,7 +45,7 @@ export const NavTabs: React.FC<Props> = ({ tabs }) => {
               'flex',
               'justify-center',
               'text-center',
-              'rounded-m',
+              'rounded-md',
               'text-m',
               'font-medium',
             )}

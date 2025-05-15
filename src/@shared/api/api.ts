@@ -9,11 +9,11 @@ import {
   UnauthorizedError,
 } from './errors'
 
-const API_PREFIX_URL = process.env.API_PREFIX_URL || 'http://localhost:3000/api'
+const API_URL = process.env.API_URL || 'http://localhost:3000/api'
 
 const createApiClient = (apiOptions?: Parameters<typeof ky.create>[0]) => {
   const api = ky.create({
-    prefixUrl: API_PREFIX_URL,
+    prefixUrl: API_URL,
     headers: {
       'Content-Type': 'application/json',
     },

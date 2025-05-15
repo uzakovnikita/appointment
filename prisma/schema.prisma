@@ -44,11 +44,12 @@ model Booking {
 }
 
 model Bike {
-  id      Int       @id @default(autoincrement())
-  name    String
-  Booking Booking[]
-  enabled Boolean
-  img     String
+  id          Int       @id @default(autoincrement())
+  name        String
+  description String
+  Booking     Booking[]
+  enabled     Boolean
+  img         String
 }
 
 model Schedule {
