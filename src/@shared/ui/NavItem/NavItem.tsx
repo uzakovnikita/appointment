@@ -14,17 +14,16 @@ export const NavItem: FC<Props> = ({ text, href, className }) => {
     <div
       className={mergeClasses(
         cn(
-          'bg-secondary',
-          'text-on-secondary',
+          'text-on-surface',
           'rounded-md',
           'p-2',
           'relative',
-          'hover:before:opacity-8',
-          'active:before:opacity-12',
+          'hover:before:opacity-12',
+          'active:before:opacity-16',
           "before:content-['']",
           'before:absolute',
           'before:inset-0',
-          'before:bg-on-primary',
+          'before:bg-surface',
           'before:opacity-0',
           'before:transition-opacity',
           'transition-shadow',

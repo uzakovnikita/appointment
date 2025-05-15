@@ -29,7 +29,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${roboto_mono.className} ${open_sans.className} antialiased`}
+      className={`${open_sans.variable} ${open_sans.className} ${roboto_mono.variable} antialiased`}
     >
       <body className="text-on-background bg-background flex min-h-screen flex-col p-2">
         <div className="mb-10">
