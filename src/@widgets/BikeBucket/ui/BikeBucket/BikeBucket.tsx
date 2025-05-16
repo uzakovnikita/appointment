@@ -1,18 +1,18 @@
 'use client'
 
 import React, { useState } from 'react'
-import { usePathname, useRouter } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 import { Bike } from '../../../../@entities/bike/model'
 import { Props } from './types'
 import { ScheduleByBike } from '../ScheduleByBike'
 import { ActionButton, Card } from '@shared'
+import Link from 'next/link'
 
 export const BikeBucket: React.FC<Props> = ({
   enabledBikes,
   filteredBikeIds,
 }) => {
   const [bucket, setBucket] = useState<Bike['id'][]>(filteredBikeIds)
-  const router = useRouter()
   const pathname = usePathname()
 
   const addBike = (id: Bike['id']) => {
@@ -21,10 +21,6 @@ export const BikeBucket: React.FC<Props> = ({
 
   const deleteBike = (id: Bike['id']) => {
     setBucket((prev) => prev.filter((bikeId) => bikeId !== id))
-  }
-
-  const applySelectedBikes = () => {
-    router.push(`${pathname}?bikeIds=${bucket.join(',')}`)
   }
 
   return (
@@ -91,14 +87,11 @@ export const BikeBucket: React.FC<Props> = ({
         })}
       </ul>
       <data className="mt-2 flex justify-center">
-        <ActionButton
-          variant="primary"
-          size="l"
-          disabled={bucket.length < 1}
-          onClick={applySelectedBikes}
-        >
-          <span className="font-bold">Применить выбранное</span>
-        </ActionButton>
+        <Link href={`${pathname}?bikeIds=${bucket.join(',')}`} replace>
+          <ActionButton variant="primary" size="l" disabled={bucket.length < 1}>
+            <span className="font-bold">Применить выбранное</span>
+          </ActionButton>
+        </Link>
       </data>
 
       {filteredBikeIds.length > 0 && (

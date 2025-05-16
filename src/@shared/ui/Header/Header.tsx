@@ -3,7 +3,7 @@ import { NavItem } from '../NavItem'
 export const Header = () => {
   return (
     <header className="bg-surface-container-high text-on-surface rounded-md p-2">
-      <h1 className="flex justify-end text-xl">
+      <h1 className="flex justify-start text-xl">
         <span className="text-on-surface-variant font-branding font-bold">
           Enduro&nbsp;18
         </span>
@@ -12,6 +12,7 @@ export const Header = () => {
         <NavItem text="Главная" href="/" />
         <NavItem text="Время" href="/time_booking" />
         <NavItem text="Байки" href="/bike_bucket" />
+        <NavItem text="Контакты" href="#contacts" />
       </nav>
     </header>
   )

@@ -4,7 +4,10 @@ export const Footer = () => {
   const socials = Object.keys(SocialNames)
 
   return (
-    <footer className="bg-surface-container-high text-on-surface rounded-m flex flex-col justify-center p-4">
+    <footer
+      className="bg-surface-container-high text-on-surface rounded-m flex flex-col justify-center p-4"
+      id="contacts"
+    >
       <ul className="mt-2 flex justify-center text-sm">
         {socials.map((type, idx) => (
           <li key={idx} className="not-first:ml-2">

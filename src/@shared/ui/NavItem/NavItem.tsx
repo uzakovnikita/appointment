@@ -7,9 +7,10 @@ type Props = {
   text: string
   href: string
   className?: string
+  replace?: boolean
 }
 
-export const NavItem: FC<Props> = ({ text, href, className }) => {
+export const NavItem: FC<Props> = ({ text, href, className, replace }) => {
   return (
     <div
       className={mergeClasses(
@@ -35,7 +36,9 @@ export const NavItem: FC<Props> = ({ text, href, className }) => {
         className,
       )}
     >
-      <Link href={href}>{text}</Link>
+      <Link replace={replace} href={href}>
+        {text}
+      </Link>
     </div>
   )
 }
