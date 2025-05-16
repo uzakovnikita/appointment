@@ -46,7 +46,7 @@ export const NavTabs: React.FC<Props> = ({ tabs }) => {
               'justify-center',
               'text-center',
               'rounded-md',
-              'text-m',
+              'text-md',
               'font-medium',
             )}
           >

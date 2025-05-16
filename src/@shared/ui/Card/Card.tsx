@@ -1,5 +1,3 @@
-'use client'
-
 import Image from 'next/image'
 import React from 'react'
 import { mergeClasses } from '@shared'
@@ -42,7 +40,7 @@ export const Card: React.FC<React.PropsWithChildren<Props>> = ({
         className={mergeClasses(classes?.img)}
       />
       <p className={mergeClasses('mt-2 text-xl', classes?.title)}>{title}</p>
-      <p className={mergeClasses('text-m mt-2', classes?.description)}>
+      <p className={mergeClasses('text-md mt-2', classes?.description)}>
         {description}
       </p>
       {children}

@@ -15,7 +15,7 @@ export const SubmitButton = ({
         'text-on-primary',
         'rounded-full',
         'px-6 py-3',
-        'text-label-lg',
+        'text-lgabel-lg',
         'relative',
         'hover:before:opacity-8',
         'active:before:opacity-12',

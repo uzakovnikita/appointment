@@ -1,5 +1,3 @@
-'use client'
-
 import React from 'react'
 import { useFreeTimesByBike } from '@entities'
 import { normalizeDate } from '@shared'

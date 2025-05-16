@@ -29,7 +29,7 @@ export const BikeBucket: React.FC<Props> = ({
 
   return (
     <div className="bg-surface-bright rounded-sm p-1">
-      <h2 className="text-l mb-4 p-1">Доступные байки:</h2>
+      <h2 className="mb-4 p-1 text-lg">Доступные байки:</h2>
       <ul className="grid auto-rows-[1fr] grid-cols-[repeat(auto-fit,minmax(180px,1fr))]">
         {enabledBikes.map((bike, i) => {
           return (
@@ -38,8 +38,8 @@ export const BikeBucket: React.FC<Props> = ({
                 title={bike.name}
                 description={bike.description}
                 srcImg={bike.img}
-                width={360}
-                height={180}
+                width={200}
+                height={133}
                 classes={{ root: 'h-full flex-col flex' }}
               >
                 <div className="mt-auto">
@@ -70,7 +70,7 @@ export const BikeBucket: React.FC<Props> = ({
           )
         })}
       </ul>
-      {bucket.length > 0 && <p className="mt-6 mb-2 p-1">Выбрано:</p>}
+      <p className="mt-6 mb-2 p-1">Выбрано:</p>
       <ul>
         {bucket.map((id) => {
           return (
