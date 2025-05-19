@@ -1,16 +1,18 @@
+'use client'
+
 import React from 'react'
 import { useFreeTimesByBike } from '@entities'
 import { normalizeDate } from '@shared'
 
-export const ScheduleByBike: React.FC<{ filteredBikeIds: number[] }> = ({
-  filteredBikeIds,
+export const BikeSchedule: React.FC<{ selectedBikes: number[] }> = ({
+  selectedBikes,
 }) => {
   const { isPending, data } = useFreeTimesByBike({
-    bikesIds: filteredBikeIds,
+    bikesIds: selectedBikes,
   })
 
   return (
-    <div>
+    <div className="border-outline-variant bg-surface-container-low text-on-surface rounded-md border p-2">
       Доступное время
       {isPending && <div>Loading...</div>}
       {!isPending &&
@@ -20,7 +22,7 @@ export const ScheduleByBike: React.FC<{ filteredBikeIds: number[] }> = ({
           )
 
           return (
-            <li key={idx}>
+            <li key={idx} className="">
               {hours}:{minutes} - {day}.{month}.{year}
             </li>
           )

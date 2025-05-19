@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import { ActionButton, CardSkeleton } from '@shared'
+import { ActionButton, CardSkeleton, UI_SIZE, UI_VARIANT } from '@shared'
 
 export const BikeBucketSkeleton: React.FC = () => {
   return (
@@ -24,8 +24,8 @@ export const BikeBucketSkeleton: React.FC = () => {
                 <div className="mt-4 flex flex-col justify-between">
                   <ActionButton
                     disabled
-                    variant="primary"
-                    size="s"
+                    variant={UI_VARIANT.Secondary}
+                    size={UI_SIZE.S}
                     className="flex justify-center"
                   >
                     <span className="font-bold">Выбрать</span>
@@ -33,8 +33,8 @@ export const BikeBucketSkeleton: React.FC = () => {
 
                   <ActionButton
                     disabled
-                    variant="secondary"
-                    size="s"
+                    variant={UI_VARIANT.Tertiary}
+                    size={UI_SIZE.S}
                     className="mt-2 flex justify-center"
                   >
                     <span className="font-bold">Удалить</span>
@@ -48,7 +48,11 @@ export const BikeBucketSkeleton: React.FC = () => {
 
       <p className="mt-6 mb-2 p-1">Выбрано:</p>
       <data className="mt-2 flex justify-center">
-        <ActionButton variant="primary" size="m" disabled={true}>
+        <ActionButton
+          variant={UI_VARIANT.Primary}
+          size={UI_SIZE.M}
+          disabled={true}
+        >
           <span className="font-bold">Применить выбранное</span>
         </ActionButton>
       </data>

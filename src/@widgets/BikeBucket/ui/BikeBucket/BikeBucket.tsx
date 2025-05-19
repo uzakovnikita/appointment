@@ -1,18 +1,24 @@
 'use client'
 
 import React, { useState } from 'react'
-import { usePathname } from 'next/navigation'
-import { Bike } from '../../../../@entities/bike/model'
-import { Props } from './types'
-import { ScheduleByBike } from '../ScheduleByBike'
-import { ActionButton, Card } from '@shared'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+
+import { Bike } from '@entities'
+import {
+  ActionButton,
+  Card,
+  SELECTED_BIKE_IDS_QUERY,
+  UI_SIZE,
+  UI_VARIANT,
+} from '@shared'
+import { Props } from './types'
 
 export const BikeBucket: React.FC<Props> = ({
   enabledBikes,
-  filteredBikeIds,
+  selectedBikes,
 }) => {
-  const [bucket, setBucket] = useState<Bike['id'][]>(filteredBikeIds)
+  const [bucket, setBucket] = useState<Bike['id'][]>(selectedBikes)
   const pathname = usePathname()
 
   const addBike = (id: Bike['id']) => {
@@ -43,8 +49,8 @@ export const BikeBucket: React.FC<Props> = ({
                     <ActionButton
                       disabled={bucket.includes(bike.id)}
                       onClick={() => addBike(bike.id)}
-                      variant="secondary"
-                      size="s"
+                      variant={UI_VARIANT.Secondary}
+                      size={UI_SIZE.S}
                       className="flex justify-center"
                     >
                       <span className="font-bold">Выбрать</span>
@@ -53,8 +59,8 @@ export const BikeBucket: React.FC<Props> = ({
                     <ActionButton
                       disabled={!bucket.includes(bike.id)}
                       onClick={() => deleteBike(bike.id)}
-                      variant="tertiary"
-                      size="s"
+                      variant={UI_VARIANT.Tertiary}
+                      size={UI_SIZE.S}
                       className="mt-2 flex justify-center"
                     >
                       <span className="font-bold">Удалить</span>
@@ -76,8 +82,8 @@ export const BikeBucket: React.FC<Props> = ({
             >
               {enabledBikes.find((bike) => bike.id === id)?.name}
               <ActionButton
-                size="s"
-                variant="tertiary"
+                size={UI_SIZE.S}
+                variant={UI_VARIANT.Tertiary}
                 onClick={() => deleteBike(id)}
               >
                 Удалить
@@ -88,24 +94,27 @@ export const BikeBucket: React.FC<Props> = ({
       </ul>
       <data className="mt-2 flex justify-start">
         <ActionButton
-          variant="secondary"
-          size="m"
+          variant={UI_VARIANT.Secondary}
+          size={UI_SIZE.M}
           disabled={bucket.length < 1}
           onClick={() => setBucket([])}
           className="mr-2"
         >
           <span className="font-bold">Сбросить</span>
         </ActionButton>
-        <Link href={`${pathname}?bikeIds=${bucket.join(',')}`} replace>
-          <ActionButton variant="primary" size="m" disabled={bucket.length < 1}>
+        <Link
+          href={`${pathname}?${SELECTED_BIKE_IDS_QUERY}=${bucket.join(',')}`}
+          replace
+        >
+          <ActionButton
+            variant={UI_VARIANT.Primary}
+            size={UI_SIZE.M}
+            disabled={bucket.length < 1}
+          >
             <span className="font-bold">Применить</span>
           </ActionButton>
         </Link>
       </data>
-
-      {filteredBikeIds.length > 0 && (
-        <ScheduleByBike filteredBikeIds={filteredBikeIds} />
-      )}
     </div>
   )
 }

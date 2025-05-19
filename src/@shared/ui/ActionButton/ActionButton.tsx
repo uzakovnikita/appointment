@@ -1,19 +1,24 @@
 import React, { PropsWithChildren, FC, ButtonHTMLAttributes } from 'react'
 import cn from 'classnames'
+import { UI_VARIANT, UI_SIZE } from '..'
 import { mergeClasses } from '@/@shared/utils'
 
 type OwnProps = {
-  variant: 'primary' | 'secondary' | 'tertiary'
-  size: 'l' | 'm' | 's'
+  variant: UI_VARIANT
+  size: UI_SIZE
   className?: string
 }
 
 export const ActionButton: FC<
   PropsWithChildren<ButtonHTMLAttributes<HTMLButtonElement> & OwnProps>
 > = ({ variant, size, children, className, ...rest }) => {
-  const isPrimary = variant === 'primary'
-  const isSecondary = variant === 'secondary'
-  const isTertiary = variant === 'tertiary'
+  const isPrimary = variant === UI_VARIANT.Primary
+  const isSecondary = variant === UI_VARIANT.Secondary
+  const isTertiary = variant === UI_VARIANT.Tertiary
+
+  const isLSize = size === UI_SIZE.L
+  const isMSize = size === UI_SIZE.M
+  const isSSize = size === UI_SIZE.S
 
   return (
     <button
@@ -48,18 +53,18 @@ export const ActionButton: FC<
             'bg-tertiary-container': isTertiary,
             'text-on-tertiary-container': isTertiary,
             'before:bg-on-tertiary-container': isTertiary,
-            'min-w-6': size === 's',
-            'min-w-8': size === 'm',
-            'min-w-12': size === 'l',
-            'min-h-4': size === 's',
-            'min-h-6': size === 'm',
-            'min-h-10': size === 'l',
-            'p-2': size === 's',
-            'p-4': size === 'm',
-            'p-8': size === 'l',
-            'rounded-sm': size === 's',
-            'rounded-md': size === 'm',
-            'rounded-lg': size === 'l',
+            'min-w-6': isSSize,
+            'min-w-8': isMSize,
+            'min-w-12': isLSize,
+            'min-h-4': isSSize,
+            'min-h-6': isMSize,
+            'min-h-10': isLSize,
+            'p-2': isSSize,
+            'p-4': isMSize,
+            'p-8': isLSize,
+            'rounded-sm': isSSize,
+            'rounded-md': isMSize,
+            'rounded-lg': isLSize,
           },
         ),
         className,

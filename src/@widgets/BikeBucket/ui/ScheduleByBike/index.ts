@@ -1,1 +1,0 @@
-export { ScheduleByBike } from './ScheduleByBike'

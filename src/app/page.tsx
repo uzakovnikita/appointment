@@ -5,7 +5,7 @@ export default function Home() {
     <NavTabs
       tabs={[
         {
-          href: '/bike_bucket',
+          href: '/select_bike',
           text: 'Выбрать байк',
         },
         {
