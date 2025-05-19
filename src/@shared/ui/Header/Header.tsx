@@ -2,7 +2,7 @@ import { NavItem } from '../NavItem'
 
 export const Header = () => {
   return (
-    <header className="bg-surface-container-high text-on-surface rounded-md p-2">
+    <header className="bg-surface-container-low text-on-surface rounded-md p-2">
       <h1 className="flex justify-start text-xl">
         <span className="text-on-surface-variant font-branding font-bold">
           Enduro&nbsp;18

@@ -5,7 +5,7 @@ import { ActionButton, CardSkeleton } from '@shared'
 
 export const BikeBucketSkeleton: React.FC = () => {
   return (
-    <div className="bg-surface-bright animate-pulse rounded-sm p-1">
+    <div>
       {/* Заголовок */}
       <h2 className="mb-4 p-1 text-lg">Доступные байки:</h2>
 
@@ -48,7 +48,7 @@ export const BikeBucketSkeleton: React.FC = () => {
 
       <p className="mt-6 mb-2 p-1">Выбрано:</p>
       <data className="mt-2 flex justify-center">
-        <ActionButton variant="primary" size="l" disabled={true}>
+        <ActionButton variant="primary" size="m" disabled={true}>
           <span className="font-bold">Применить выбранное</span>
         </ActionButton>
       </data>

@@ -24,7 +24,7 @@ export const BikeBucket: React.FC<Props> = ({
   }
 
   return (
-    <div className="bg-surface-bright rounded-sm p-1">
+    <div>
       <h2 className="mb-4 p-1 text-lg">Доступные байки:</h2>
       <ul className="grid auto-rows-[1fr] grid-cols-[repeat(auto-fit,minmax(180px,1fr))]">
         {enabledBikes.map((bike, i) => {
@@ -43,7 +43,7 @@ export const BikeBucket: React.FC<Props> = ({
                     <ActionButton
                       disabled={bucket.includes(bike.id)}
                       onClick={() => addBike(bike.id)}
-                      variant="primary"
+                      variant="secondary"
                       size="s"
                       className="flex justify-center"
                     >
@@ -53,7 +53,7 @@ export const BikeBucket: React.FC<Props> = ({
                     <ActionButton
                       disabled={!bucket.includes(bike.id)}
                       onClick={() => deleteBike(bike.id)}
-                      variant="secondary"
+                      variant="tertiary"
                       size="s"
                       className="mt-2 flex justify-center"
                     >
@@ -72,12 +72,12 @@ export const BikeBucket: React.FC<Props> = ({
           return (
             <li
               key={id}
-              className="bg-surface-container text-on-surface border-outline-variant flex items-center justify-between rounded-lg border p-4 not-first:mt-2"
+              className="bg-surface-container text-on-surface border-outline-variant flex items-center justify-between rounded-lg border p-2 not-first:mt-2"
             >
               {enabledBikes.find((bike) => bike.id === id)?.name}
               <ActionButton
                 size="s"
-                variant="secondary"
+                variant="tertiary"
                 onClick={() => deleteBike(id)}
               >
                 Удалить
@@ -86,10 +86,19 @@ export const BikeBucket: React.FC<Props> = ({
           )
         })}
       </ul>
-      <data className="mt-2 flex justify-center">
+      <data className="mt-2 flex justify-start">
+        <ActionButton
+          variant="secondary"
+          size="m"
+          disabled={bucket.length < 1}
+          onClick={() => setBucket([])}
+          className="mr-2"
+        >
+          <span className="font-bold">Сбросить</span>
+        </ActionButton>
         <Link href={`${pathname}?bikeIds=${bucket.join(',')}`} replace>
-          <ActionButton variant="primary" size="l" disabled={bucket.length < 1}>
-            <span className="font-bold">Применить выбранное</span>
+          <ActionButton variant="primary" size="m" disabled={bucket.length < 1}>
+            <span className="font-bold">Применить</span>
           </ActionButton>
         </Link>
       </data>

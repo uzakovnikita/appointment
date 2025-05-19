@@ -3,7 +3,7 @@ import cn from 'classnames'
 import { mergeClasses } from '@/@shared/utils'
 
 type OwnProps = {
-  variant: 'primary' | 'secondary'
+  variant: 'primary' | 'secondary' | 'tertiary'
   size: 'l' | 'm' | 's'
   className?: string
 }
@@ -12,6 +12,8 @@ export const ActionButton: FC<
   PropsWithChildren<ButtonHTMLAttributes<HTMLButtonElement> & OwnProps>
 > = ({ variant, size, children, className, ...rest }) => {
   const isPrimary = variant === 'primary'
+  const isSecondary = variant === 'secondary'
+  const isTertiary = variant === 'tertiary'
 
   return (
     <button
@@ -40,9 +42,12 @@ export const ActionButton: FC<
             'bg-primary-container': isPrimary,
             'text-on-primary-container': isPrimary,
             'before:bg-on-primary-container': isPrimary,
-            'bg-secondary-container': !isPrimary,
-            'bg-on-secondary-container': !isPrimary,
-            'before:bg-on-secondary-container': !isPrimary,
+            'bg-secondary-container': isSecondary,
+            'text-on-secondary-container': isSecondary,
+            'before:bg-on-secondary-container': isSecondary,
+            'bg-tertiary-container': isTertiary,
+            'text-on-tertiary-container': isTertiary,
+            'before:bg-on-tertiary-container': isTertiary,
             'min-w-6': size === 's',
             'min-w-8': size === 'm',
             'min-w-12': size === 'l',
