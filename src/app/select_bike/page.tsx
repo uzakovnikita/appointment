@@ -1,35 +1,43 @@
-import { getEnabledBikes } from '@entities'
-import { BikeBucket, BikeSchedule } from '@widgets'
+import {
+  BikeBucketServer,
+  BikeBucketSkeleton,
+  BikeScheduleServer,
+  BikeScheduleSkeleton,
+} from '@widgets'
 import { SELECTED_BIKE_IDS_QUERY } from '@shared'
+import { Suspense } from 'react'
 
 export default async function SelectBike({
   searchParams,
 }: {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }) {
-  const { [SELECTED_BIKE_IDS_QUERY]: filteredBikes } = await searchParams
+  const { [SELECTED_BIKE_IDS_QUERY]: selectedBikeIdsQuery } = await searchParams
 
-  const allEnabledBikes = await getEnabledBikes()
-
-  const selectedBikes = filteredBikes
-    ? String(filteredBikes)
+  const selectedBikes = selectedBikeIdsQuery
+    ? String(selectedBikeIdsQuery)
         ?.split(',')
         .map((val) => Number(val))
     : []
 
-  await new Promise((res) => setTimeout(() => res('lol'), 2000))
-
   return (
     <div>
-      <BikeBucket
-        enabledBikes={allEnabledBikes}
-        selectedBikes={selectedBikes}
-      />
-      {selectedBikes.length > 0 && (
-        <div className="mt-4">
-          <BikeSchedule selectedBikes={selectedBikes} />
-        </div>
-      )}
+      <Suspense
+        fallback={<BikeBucketSkeleton selectedCounter={selectedBikes.length} />}
+      >
+        <BikeBucketServer selectedBikes={selectedBikes} />
+      </Suspense>
+      <div className="mt-4">
+        <Suspense
+          fallback={
+            <BikeScheduleSkeleton
+              hasSelectedBikes={selectedBikes.length !== 0}
+            />
+          }
+        >
+          <BikeScheduleServer selectedBikes={selectedBikes} />
+        </Suspense>
+      </div>
     </div>
   )
 }

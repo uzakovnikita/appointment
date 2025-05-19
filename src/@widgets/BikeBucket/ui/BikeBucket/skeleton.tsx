@@ -3,7 +3,9 @@
 import React from 'react'
 import { ActionButton, CardSkeleton, UI_SIZE, UI_VARIANT } from '@shared'
 
-export const BikeBucketSkeleton: React.FC = () => {
+export const BikeBucketSkeleton: React.FC<{ selectedCounter: number }> = ({
+  selectedCounter,
+}) => {
   return (
     <div>
       {/* Заголовок */}
@@ -47,15 +49,34 @@ export const BikeBucketSkeleton: React.FC = () => {
       </ul>
 
       <p className="mt-6 mb-2 p-1">Выбрано:</p>
-      <data className="mt-2 flex justify-center">
+      <ul>
+        {Array.from(Array(selectedCounter)).map((id) => {
+          return (
+            <li
+              key={id}
+              className="bg-surface-container text-on-surface border-outline-variant flex items-center justify-between rounded-lg border p-2 not-first:mt-2"
+            >
+              <div className="bg-on-surface min-h-6 min-w-21 animate-pulse rounded"></div>
+              <ActionButton size={UI_SIZE.S} variant={UI_VARIANT.Tertiary}>
+                Удалить
+              </ActionButton>
+            </li>
+          )
+        })}
+      </ul>
+      <div className="mt-2 flex justify-start">
         <ActionButton
-          variant={UI_VARIANT.Primary}
+          variant={UI_VARIANT.Secondary}
           size={UI_SIZE.M}
-          disabled={true}
+          disabled
+          className="mr-2"
         >
-          <span className="font-bold">Применить выбранное</span>
+          <span className="font-bold">Сбросить</span>
         </ActionButton>
-      </data>
+        <ActionButton variant={UI_VARIANT.Primary} size={UI_SIZE.M} disabled>
+          <span className="font-bold">Применить</span>
+        </ActionButton>
+      </div>
     </div>
   )
 }

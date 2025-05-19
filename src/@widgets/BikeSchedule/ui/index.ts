@@ -1,1 +1,1 @@
-export { BikeSchedule } from './BikeSchedule'
+export { BikeScheduleServer, BikeScheduleSkeleton } from './BikeSchedule'

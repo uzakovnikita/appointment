@@ -92,19 +92,23 @@ export const BikeBucket: React.FC<Props> = ({
           )
         })}
       </ul>
-      <data className="mt-2 flex justify-start">
-        <ActionButton
-          variant={UI_VARIANT.Secondary}
-          size={UI_SIZE.M}
-          disabled={bucket.length < 1}
-          onClick={() => setBucket([])}
-          className="mr-2"
-        >
-          <span className="font-bold">Сбросить</span>
-        </ActionButton>
+      <div className="mt-2 flex justify-start">
+        <Link href={pathname} replace shallow scroll={false}>
+          <ActionButton
+            variant={UI_VARIANT.Secondary}
+            size={UI_SIZE.M}
+            disabled={bucket.length < 1}
+            onClick={() => setBucket([])}
+            className="mr-2"
+          >
+            <span className="font-bold">Сбросить</span>
+          </ActionButton>
+        </Link>
         <Link
           href={`${pathname}?${SELECTED_BIKE_IDS_QUERY}=${bucket.join(',')}`}
           replace
+          shallow
+          scroll={false}
         >
           <ActionButton
             variant={UI_VARIANT.Primary}
@@ -114,7 +118,7 @@ export const BikeBucket: React.FC<Props> = ({
             <span className="font-bold">Применить</span>
           </ActionButton>
         </Link>
-      </data>
+      </div>
     </div>
   )
 }

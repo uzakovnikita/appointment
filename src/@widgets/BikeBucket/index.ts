@@ -1,1 +1,1 @@
-export { BikeBucket, BikeBucketSkeleton } from './ui'
+export { BikeBucketServer, BikeBucketSkeleton } from './ui'
