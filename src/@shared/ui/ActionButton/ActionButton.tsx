@@ -1,24 +1,19 @@
 import React, { PropsWithChildren, FC, ButtonHTMLAttributes } from 'react'
 import cn from 'classnames'
-import { UI_VARIANT, UI_SIZE } from '..'
-import { mergeClasses } from '@/@shared/utils'
+
+import { mergeClasses } from '@shared'
+import { getSizes, getVariants, UI_SIZE, UI_VARIANT } from '..'
 
 type OwnProps = {
   variant: UI_VARIANT
   size: UI_SIZE
-  className?: string
 }
 
 export const ActionButton: FC<
   PropsWithChildren<ButtonHTMLAttributes<HTMLButtonElement> & OwnProps>
 > = ({ variant, size, children, className, ...rest }) => {
-  const isPrimary = variant === UI_VARIANT.Primary
-  const isSecondary = variant === UI_VARIANT.Secondary
-  const isTertiary = variant === UI_VARIANT.Tertiary
-
-  const isLSize = size === UI_SIZE.L
-  const isMSize = size === UI_SIZE.M
-  const isSSize = size === UI_SIZE.S
+  const { isPrimary, isSecondary, isTertiary } = getVariants(variant)
+  const { isLSize, isMSize, isSSize } = getSizes(size)
 
   return (
     <button
